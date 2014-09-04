@@ -1,5 +1,10 @@
 $DEBUG = true
 $TYPEWRITER = false
+$PAGE_WIDTH = 80
+
+$COL = 0
+$MAX = 9
+
 def clause(min,max)
     print "Hodor"
     (min - 1 + rand(max - min + 1)).times do
@@ -7,8 +12,8 @@ def clause(min,max)
     end
 end
 
-100.times do ## change for number of sentences
-    type = rand(10)
+def sentence(type)
+    type %= $MAX
     if type == 0
         clause(1,8)
         print "? "
@@ -29,6 +34,7 @@ end
         clause(3,9)
         print ". "
     end
+
     if $TYPEWRITER
         print " "
     end
@@ -38,3 +44,14 @@ end
     end
 end
 
+100.times do ## change for number of sentences
+    type = rand($MAX)
+    sentence(type)
+
+end
+
+if $DEBUG
+    (0..$MAX - 1).each do |i|
+        sentence(i)
+    end
+end
